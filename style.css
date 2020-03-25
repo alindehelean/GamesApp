@@ -11,3 +11,36 @@
     border: none;
     color: aliceblue;
 }
+
+.creationForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.creationForm > label,
+.creationForm > input,
+.creationForm > textarea,
+.creationForm > select {
+    display: block;
+    margin: 5px 10px;
+}
+
+.submit-Btn {
+    background-color: green;
+    width: 100px;
+    height: 20px;
+    
+    border: none;
+    color: aliceblue;
+}
+
+.inputError {
+    border: 1px solid red;
+}
+
+.errorMsg {
+    margin-left: 20px;
+    display: block;
+    color: red;
+    font-size: 14px;
+}

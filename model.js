@@ -41,12 +41,13 @@ var apiURL = "https://games-world.herokuapp.com"; // heroku blocu . games world 
             //                     "<p>" + arrayOfGames[i].description + "</p>" +
             //                     "<button class='delete-btn' "+
             //                         " onclick=\"deleteGame('" + arrayOfGames[i]._id + "')\">Delete</button>";
+        
+            // acelasi cod se poate scrie asa :
 
-
-                                    gameElements += `<h1>${arrayOfGames[i].title}</h1> 
-                            <img src="${arrayOfGames[i].imageUrl}" />
-                            <p>${arrayOfGames[i].description}</p> 
-                            <button class="delete-btn" onclick="deleteGame('${arrayOfGames[i]._id}')">Delete</button>`;
+        gameElements += `<h1>${arrayOfGames[i].title}</h1> 
+        <img src="${arrayOfGames[i].imageUrl}" />
+        <p>${arrayOfGames[i].description}</p> 
+        <button class="delete-btn" onclick="deleteGame('${arrayOfGames[i]._id}')">Delete</button>`;
 
         }
         container.innerHTML= gameElements;
@@ -64,3 +65,88 @@ var apiURL = "https://games-world.herokuapp.com"; // heroku blocu . games world 
 
     
     }
+
+    document.querySelector('.submit-Btn').addEventListener("click", function(event){
+        event.preventDefault();
+
+        const gameTitle = document.getElementById("gameTitle");
+        const gameDescription = document.getElementById("gameDescription");
+        const gameGenre = document.getElementById("gameGenre");
+        const gamePublisher = document.getElementById("gamePublisher");
+        const gameImageUrl = document.getElementById("gameImageUrl");
+        const gameRelease = document.getElementById("gameRelease");
+
+        
+            validateFormElement(gameTitle, "The title is required");
+            validateFormElement(gameGenre, "The genre is required");
+            validateFormElement(gameImageUrl, "The image URL is required");
+            validateFormElement(gameRelease, "The release date is required");
+
+            validateReleaseTimeStampElement(gameRelease, "The release date is required");
+       
+
+        if(gameTitle.value !== "" && gameGenre.value !== "" && gameImageUrl.value !== "" && gameRelease.value === ""){
+            const requestParams = {
+                title: gameTitle.value,
+                releaseDate: gameRelease.value,
+                genre: gameGenre.value,
+                publisher: gamePublisher.value,
+                imageURL : gameImageUrl.value,
+                description: gameDescription.value
+    };
+
+}
+
+});
+
+    function validateFormElement(inputElement, errorMessage){
+
+    
+        if(inputElement.value === ""){
+            if(!document.querySelector('[rel="'+inputElement.id+'"]')){
+            inputElement.classList.add("inputError");
+            const errorMsgElement = document.createElement("span");
+            errorMsgElement.setAttribute("rel", inputElement.id);
+            errorMsgElement.classList.add("errorMsg");
+            errorMsgElement.innerHTML = errorMessage;
+            inputElement.after(errorMsgElement);
+
+            }
+        } else {
+            if(document.querySelector('[rel="'+inputElement.id+'"]')){
+                document.querySelector('[rel="'+inputElement.id+'"]').remove();
+                inputElement.classList.remove("inputError");
+            }
+        }
+    };
+
+    function validateReleaseTimeStampElement(inputElement, errorMessage){
+        if(isNaN(inputElement.value)){
+            buildErrorMessage(inputElement, errorMessage);
+
+        }
+    }
+
+    function buildErrorMessage(inputEl, errorMsg){
+        if(!document.querySelector('[rel="'+inputElement.id+'"]')){
+            inputEl.classList.add("inputError");
+            const errorMsgElement = document.createElement("span");
+            errorMsgElement.setAttribute("rel", inputElement.id);
+            errorMsgElement.classList.add("errorMsg");
+            errorMsgElement.innerHTML = errorMsg;
+            inputEl.after(errorMsgElement);
+
+    }
+    
+
+    function createGameRequest(gameObject){
+        fetch(apiURL + "/games", {
+            method:"POST",
+            headers: {
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+            body: JSON.stringify(gameObject)
+        });
+    };
+
+

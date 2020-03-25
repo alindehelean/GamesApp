@@ -36,11 +36,18 @@ var apiURL = "https://games-world.herokuapp.com"; // heroku blocu . games world 
         let gameElements = "";
 
         for(var i=0; i < arrayOfGames.length; i++){
-             gameElements += "<h1>"+ arrayOfGames[i].title +"</h1>" + // gEl += gEl + h1 ...
-                                "<img src='" + arrayOfGames[i].imageUrl + "' />" +
-                                "<p>" + arrayOfGames[i].description + "</p>" +
-                                "<button class='delete-btn' "+
-                                    " onclick=\"deleteGame('" + arrayOfGames[i]._id + "')\">Delete</button>";
+            //  gameElements += "<h1>"+ arrayOfGames[i].title +"</h1>" + // gEl += gEl + h1 ...
+            //                     "<img src='" + arrayOfGames[i].imageUrl + "' />" +
+            //                     "<p>" + arrayOfGames[i].description + "</p>" +
+            //                     "<button class='delete-btn' "+
+            //                         " onclick=\"deleteGame('" + arrayOfGames[i]._id + "')\">Delete</button>";
+
+
+                                    gameElements += `<h1>${arrayOfGames[i].title}</h1> 
+                            <img src="${arrayOfGames[i].imageUrl}" />
+                            <p>${arrayOfGames[i].description}</p> 
+                            <button class="delete-btn" onclick="deleteGame('${arrayOfGames[i]._id}')">Delete</button>`;
+
         }
         container.innerHTML= gameElements;
     });

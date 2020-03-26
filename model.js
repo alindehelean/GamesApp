@@ -94,26 +94,20 @@ var apiURL = "https://games-world.herokuapp.com"; // heroku blocu . games world 
                 imageURL : gameImageUrl.value,
                 description: gameDescription.value
     };
-
+    createGameRequest(requestParams);
 }
 
 });
 
     function validateFormElement(inputElement, errorMessage){
-
-    
         if(inputElement.value === ""){
             if(!document.querySelector('[rel="'+inputElement.id+'"]')){
-            inputElement.classList.add("inputError");
-            const errorMsgElement = document.createElement("span");
-            errorMsgElement.setAttribute("rel", inputElement.id);
-            errorMsgElement.classList.add("errorMsg");
-            errorMsgElement.innerHTML = errorMessage;
-            inputElement.after(errorMsgElement);
+                buildErrorMessage(inputElement, errorMessage);
 
             }
         } else {
             if(document.querySelector('[rel="'+inputElement.id+'"]')){
+                console.log("The error is erased!");
                 document.querySelector('[rel="'+inputElement.id+'"]').remove();
                 inputElement.classList.remove("inputError");
             }
@@ -121,17 +115,16 @@ var apiURL = "https://games-world.herokuapp.com"; // heroku blocu . games world 
     };
 
     function validateReleaseTimeStampElement(inputElement, errorMessage){
-        if(isNaN(inputElement.value)){
+        if(isNaN(inputElement.value) && inputElement.value !== ""){
             buildErrorMessage(inputElement, errorMessage);
 
         }
     }
 
     function buildErrorMessage(inputEl, errorMsg){
-        if(!document.querySelector('[rel="'+inputElement.id+'"]')){
             inputEl.classList.add("inputError");
             const errorMsgElement = document.createElement("span");
-            errorMsgElement.setAttribute("rel", inputElement.id);
+            errorMsgElement.setAttribute("rel", inputEl.id);
             errorMsgElement.classList.add("errorMsg");
             errorMsgElement.innerHTML = errorMsg;
             inputEl.after(errorMsgElement);

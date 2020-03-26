@@ -9,7 +9,32 @@
     height: 20px;
     background-color: red;
     border: none;
-    color: aliceblue;
+    color: white;
+}
+
+.submit-Btn {
+    width: 100px;
+    height: 20px;
+    background-color: green;
+    border: none;
+    color: white;
+}
+
+img {
+    width: 90px;
+    float:left;
+    margin: 10px;
+}
+
+h1 {
+    color: blue;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 10px;
 }
 
 .creationForm {
@@ -17,21 +42,13 @@
     flex-direction: column;
 }
 
-.creationForm > label,
-.creationForm > input,
-.creationForm > textarea,
-.creationForm > select {
+.creationForm>label,
+.creationForm>input,
+.creationForm>textarea,
+.creationForm>select
+ {
     display: block;
     margin: 5px 10px;
-}
-
-.submit-Btn {
-    background-color: green;
-    width: 100px;
-    height: 20px;
-    
-    border: none;
-    color: aliceblue;
 }
 
 .inputError {
@@ -39,8 +56,8 @@
 }
 
 .errorMsg {
-    margin-left: 20px;
-    display: block;
+    margin-left: 10px;
     color: red;
-    font-size: 14px; 
+    display: block;
+    font-size: 14px;
 }
